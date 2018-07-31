@@ -1,0 +1,24 @@
+<div class="text-center">
+  <div *ngIf="isShowForm">
+    <input type="text" class="form-control" [(ngModel)]="newEn" placeholder="Input English...">
+    <input type="text" [(ngModel)]="newVn" placeholder="Dịch nghĩa..." class="form-control">
+    <br>
+    <button (click)="addWord();" class="btn btn-outline-success">Thêm từ mới</button>
+  </div>
+  <button class="btn btn-outline-success" (click)="isShowForm = true" *ngIf="! isShowForm">Thêm từ mới</button>
+  <br>
+  <select class="mt-4 mb-4 form-control" [(ngModel)]="filterStatus">
+    <option value="XEM_TAT_CA">Xem tất cả</option>
+    <option value="XEM_TU_NHO">Xem từ đã nhớ</option>
+    <option value="XEM_TU_CHUA_NHO">Xem từ chưa nhớ</option>
+  </select>
+</div>
+<div *ngFor=" let word of arrWords">
+  <!-- <div class="word jumbotron" *ngIf = "filterStatus ==='XEM_TAT_CA' || (filterStatus === 'XEM_TU_NHO' && word.memorized) || (filterStatus === 'XEM_TU_CHUA_NHO' && !word.memorized)"> -->
+      <div class="word jumbotron" *ngIf = "getShowStatus(word.memorized)">
+    <h4 [ngStyle]="{color: word.memorized == true ? 'green':'red' }">{{ word.en }}</h4>
+    <p>{{ word.vn }}</p>
+    <button class="btn btn-outline-danger" (click)="removeWord(word.id);">Xóa</button>
+    <button class="ml-2 btn btn-outline-primary" (click)= "word.memorized = ! word.memorized">{{ !word.memorized ? 'Đã nhớ' : 'Chưa nhớ' }}</button>
+  </div>
+</div>

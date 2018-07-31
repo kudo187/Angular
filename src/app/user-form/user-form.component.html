@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label for="exampleInputEmail1">Email address</label>
+  <input type="text" class="form-control" [(ngModel)]="name" placeholder="Enter email">
+  <h3 [ngStyle]="name.length % 2 === 0 ? evenStyle : oddStyle" id="emailHelp" class="form-text">{{ name }}</h3>
+</div>
+<button type="submit" class="btn btn-outline-success">Submit</button>
+<div class="mt-4" [ngClass]="currentShape"></div>

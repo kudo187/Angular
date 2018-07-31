@@ -1,0 +1,7 @@
+<p *ngIf = "isShow">
+  struck works!
+</p>
+<button (click) = "isShow = !isShow" >Click</button>
+<ul>
+  <li *ngFor = "let subject of arrSubjects">{{ subject }}</li>
+</ul>
